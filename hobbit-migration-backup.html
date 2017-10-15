@@ -77,10 +77,12 @@
 				accessToken: 'pk.eyJ1IjoiZ2V5ZXJicmktbXN1IiwiYSI6IkxTRGhIQnMifQ.HbqL3TWxcEQLB61NEzCNYA'
 			}).addTo(memap);
 			L.control.mousePosition().addTo(memap);
-			L.control.attribution().setPrefix('<a alt="A JS library for interactive maps" href="http://leafletjs.com" target="_blank">Leaflet</a>')
-			.addAttribution('Map Tile Imagery &copy; <a alt="Iron Crown Enterprise" href="http://ironcrown.com/middle-earth-role-playing/">Iron Crown Enterprises</a> | <a alt="Creative Commons" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a> | Compiled with <a alt="Mapbox" href="https://www.mapbox.com/" target="_blank">Mapbox Style Editor</a>')
-			.addTo(memap);
-	//		L.imageOverlay(imageUrl, imageBounds).addTo(memap);
+			L.control.attribution().setPrefix(
+				'<a alt="A JS library for interactive maps" href="http://leafletjs.com" target="_blank">Leaflet</a>'
+			).addAttribution(
+				'Map Tile Imagery &copy; <a alt="Iron Crown Enterprise" href="http://ironcrown.com/middle-earth-role-playing/">Iron Crown Enterprises</a> | <a alt="Creative Commons" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a> | Compiled with <a alt="Mapbox" href="https://www.mapbox.com/" target="_blank">Mapbox Style Editor</a>'
+			).addTo(memap);
+//			L.imageOverlay(imageUrl, imageBounds).addTo(memap);
 		</script>
 
 	</body>
