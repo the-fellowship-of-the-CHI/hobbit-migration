@@ -20,7 +20,12 @@
 
     <!-- Custom styles for this template -->
     <link href="css/grayscale.min.css" rel="stylesheet">
-
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+   integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+   crossorigin=""/>
+   <style>
+   #mapid { height: 230px; }
+   </style>
   </head>
 
   <body id="page-top">
@@ -41,7 +46,7 @@
     </div>
 
     <!-- Map Section -->
-    <div id="map"></div>
+    <div id="mapid"></div>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -56,7 +61,20 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/grayscale.min.js"></script>
-
+	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+   integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+   crossorigin=""></script>
+   <script>
+		var mymap = L.map('mapid').setView([60.505, -0.09], 5);
+		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1Ijoibmljb2xlcmFzbGljaCIsImEiOiJjajkwM2RibnoydWFoMnJxenJwMTdsNXkxIn0.Tf5mH8HqpoI9WJ22k62VKg'
+}).addTo(mymap);
+	var marker = L.marker([51.5, -0.09]).addTo(mymap);
+	marker.bindPopup("<b>Hola mi amigos!</b><br>This <em>map</em> rocks.").openPopup();
+	</script>
   </body>
 
 </html>
