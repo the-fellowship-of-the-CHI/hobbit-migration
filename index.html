@@ -65,11 +65,11 @@
 			var northwest = L.latLng(16, -23.4),
 				southeast = L.latLng(-16, 23.4),
 				bounds = L.latLngBounds(northwest, southeast),
-				imageUrl = 'img/me-base.jpg',		
-				imageBounds = [[-15, -22.4], [15, 22.4]],
+				keyUrl = 'img/key.png',		
+				keyLocation = [[2.36261, -18.979], [3.92572, -13.28022]],
 				memap = L.map('memap', {
 					attributionControl: false
-				}).setMaxBounds(bounds).setView([0, 0], 6);
+				}).setMaxBounds(bounds).setView([5.42036, -11.63452], 7);
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 				minZoom: 5,
 				maxZoom: 9,
@@ -82,21 +82,37 @@
 			).addAttribution(
 				'Map Tile Imagery &copy; <a alt="Iron Crown Enterprise" href="http://ironcrown.com/middle-earth-role-playing/">Iron Crown Enterprises</a> | <a alt="Creative Commons" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a> | Compiled with <a alt="Mapbox" href="https://www.mapbox.com/" target="_blank">Mapbox Style Editor</a>'
 			).addTo(memap);
-//			L.imageOverlay(imageUrl, imageBounds).addTo(memap);	
-
-			//add lines
-			var point1 = new L.LatLng(6.256763, -39.201982),
+			L.imageOverlay(keyUrl, keyLocation).addTo(memap);	
+			var locations = L.geoJSON(geoJSON).addTo(memap);
+			
+			//add line points
+			
+/*			var point1 = new L.LatLng(6.256763, -39.201982),
 				point2 = new L.LatLng(4.194048, -3.332777),
 				point3 = new L.LatLng(-3.0994, 7.4431),
-				pointList1 = [point1, point2, point3],
-				firstpolyline = new L.Polyline(pointList1, {
-				color: '#ff2727',
-				weight: 3,
-				opacity: 1,
-				smoothFactor: 1
-			});
-			firstpolyline.addTo(memap);
-			var locations = L.geoJSON(geoJSON).addTo(memap);
+				
+			//add PointLine arrays	
+			var	alphaPointList = [point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, point11, point12, point13],
+				numericalPointList = [pointA, pointB, pointC, pointD, pointE, pointF, pointG, pointH, pointI, pointJ];
+				
+			//create PolyLines	
+			var	alphaPolyline = new L.Polyline(alphaPointList, {
+					color: '#ff2727',
+					weight: 3,
+					opacity: 1,
+					smoothFactor: 1
+				}),
+				numericalPolyline = new L.Polyline(numericalPointList, {
+					color: '#2727ff',
+					weight: 3,
+					opacity: 1,
+					smoothFactor: 1
+				});
+				
+			//add PolyLines	
+			alphaPolyline.addTo(memap);
+			numericalPolyLine.addTo(memap);
+*/			
 			
 			//add pins
 			var geoJSON = [
@@ -111,14 +127,16 @@
 					description: 'Bilbo Baggins&#39; hobbit hole is comfortable and tidy, until Gandalf invites a group of dwarves for dinner',
 					url: 'http://lotr.wikia.com/wiki/Bag_End',					
 					image: 'img/loc-img/bag-end.png',
-//					icon: {
-//					//	iconUrl: 'https://d30y9cdsu7xlg0.cloudfront.net/png/641883-200.png',
-//						//shadowURL: '',
-//						iconSize: [30, 30], // size of the icon
-//						iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
-//						popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
-//						className: 'dot'
-//					}	
+					icon: {
+						iconUrl: 'leaflet/images/StartIconRed.png',
+						iconSize: [25, 41], // size of the icon
+						iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
+						popupAnchor: [0, -41], // point from which the popup should open relative to the iconAnchor
+						shadowURL: 'leaflet/images/marker-shadow.png',
+						shadowSize:   [55, 41], // size of shadow
+						shadowAnchor: [12.5, 41], // point of icon from which shadow casts
+						className: 'dot'
+					}	
 				}
 					
 				},
@@ -153,16 +171,18 @@ image: 'img/loc-img/bag-end.png',
 				properties: {
 					title: 'Troll Encounter',
 					description: 'When Bilbo&#39;s companions are captured by hungry trolls, Bilbo distracts the trolls until daylight breaks and the trolls are turned into stone',
-url: 'http://lotr.wikia.com/wiki/Stone-trolls',					
-image: 'img/loc-img/the-trolls.jpg',
-//					icon: {
-//					//	iconUrl: 'https://d30y9cdsu7xlg0.cloudfront.net/png/641883-200.png',
-//						//shadowURL: '',
-//						iconSize: [30, 30], // size of the icon
-//						iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
-//						popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
-//						className: 'dot'
-//					}	
+					url: 'http://lotr.wikia.com/wiki/Stone-trolls',					
+					image: 'img/loc-img/the-trolls.jpg',
+					icon: {
+						iconUrl: 'leaflet/images/GondorIconRed.png',
+						iconSize: [25, 41], // size of the icon
+						iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
+						popupAnchor: [0, -41], // point from which the popup should open relative to the iconAnchor
+						shadowURL: 'leaflet/images/marker-shadow.png',
+						shadowSize:   [55, 41], // size of shadow
+						shadowAnchor: [12.5, 41], // point of icon from which shadow casts
+						className: 'dot'
+					}	
 				}
 				
 			},
@@ -175,20 +195,22 @@ image: 'img/loc-img/the-trolls.jpg',
 				properties: {
 					title: 'Thorin&#39;s Company at Rivendell',
 					description: 'Bilbo, Gandalf, and Thorin&#39;s company of dwarves are hosted by Elrond at Rivendell',
-url: 'http://lotr.wikia.com/wiki/Rivendell',					
-image: 'img/loc-img/rivendell.jpg',
-//					icon: {
-//					//	iconUrl: 'https://d30y9cdsu7xlg0.cloudfront.net/png/641883-200.png',
-//						//shadowURL: '',
-//						iconSize: [30, 30], // size of the icon
-//						iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
-//						popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
-//						className: 'dot'
-//					}	
+					url: 'http://lotr.wikia.com/wiki/Rivendell',					
+					image: 'img/loc-img/rivendell.jpg',
+					icon: {
+						iconUrl: 'leaflet/images/GondorIconRed.png',
+						iconSize: [25, 41], // size of the icon
+						iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
+						popupAnchor: [0, -41], // point from which the popup should open relative to the iconAnchor
+						shadowURL: 'leaflet/images/marker-shadow.png',
+						shadowSize:   [55, 41], // size of shadow
+						shadowAnchor: [12.5, 41], // point of icon from which shadow casts
+						className: 'dot'
+					}	
 				}
 				
 			},
-{
+			{
 					type: 'Feature',
 					geometry: {
 					type: 'Point',
@@ -210,7 +232,7 @@ image: 'img/loc-img/rivendell.jpg',
 				}
 				
 			},
-{
+			{
 					type: 'Feature',
 					geometry: {
 					type: 'Point',
@@ -219,21 +241,21 @@ image: 'img/loc-img/rivendell.jpg',
 				properties: {
 					title: 'Misty Mountains',
 					description: 'Gandalf, Bilbo, and the dwarves cross the mountains by the High Pass. Bilbo gets lost, meets Gollum, and accidentally discovers the Ring',					
-image: 'img/loc-img/misty-mountains.jpg',
-url: 'http://lotr.wikia.com/wiki/Misty_Mountains',
-//					icon: {
-//					//	iconUrl: 'https://d30y9cdsu7xlg0.cloudfront.net/png/641883-200.png',
-//						//shadowURL: '',
-//						iconSize: [30, 30], // size of the icon
-//						iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
-//						popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
-//						className: 'dot'
-//					}	
+					image: 'img/loc-img/misty-mountains.jpg',
+					url: 'http://lotr.wikia.com/wiki/Misty_Mountains',
+					icon: {
+						iconUrl: 'leaflet/images/GondorIconRed.png',
+						iconSize: [25, 41], // size of the icon
+						iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
+						popupAnchor: [0, -41], // point from which the popup should open relative to the iconAnchor
+						shadowURL: 'leaflet/images/marker-shadow.png',
+						shadowSize:   [55, 41], // size of shadow
+						shadowAnchor: [12.5, 41], // point of icon from which shadow casts
+						className: 'dot'
+					}	
 				}
-
-				
 			},
-{
+			{
 					type: 'Feature',
 					geometry: {
 					type: 'Point',
@@ -265,21 +287,21 @@ url: 'http://lotr.wikia.com/wiki/Moria',
 				properties: {
 					title: 'Mirkwood',
 					description: 'Bilbo and the dwarves try to travel through the forest undetected, but are captured by elves',					
-image: 'img/loc-img/mirkwood.jpg',
-url: 'http://lotr.wikia.com/wiki/Mirkwood',
-//					icon: {
-//					//	iconUrl: 'https://d30y9cdsu7xlg0.cloudfront.net/png/641883-200.png',
-//						//shadowURL: '',
-//						iconSize: [30, 30], // size of the icon
-//						iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
-//						popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
-//						className: 'dot'
-//					}	
+					image: 'img/loc-img/mirkwood.jpg',
+					url: 'http://lotr.wikia.com/wiki/Mirkwood',
+					icon: {
+						iconUrl: 'leaflet/images/GondorIconRed.png',
+						iconSize: [25, 41], // size of the icon
+						iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
+						popupAnchor: [0, -41], // point from which the popup should open relative to the iconAnchor
+						shadowURL: 'leaflet/images/marker-shadow.png',
+						shadowSize:   [55, 41], // size of shadow
+						shadowAnchor: [12.5, 41], // point of icon from which shadow casts
+						className: 'dot'	
+					}		
 				}
-
-				
 			},
-{
+			{
 					type: 'Feature',
 					geometry: {
 					type: 'Point',
@@ -288,21 +310,21 @@ url: 'http://lotr.wikia.com/wiki/Mirkwood',
 				properties: {
 					title: 'Thranduil&#39;s Hall',
 					description: 'Thorin and the dwarves enjoy the elven king Thranduil&#39;s hospitality, but from behind bars',					
-image: 'img/loc-img/thranduil.jpg',
-url: 'http://lotr.wikia.com/wiki/Thranduil',
-//					icon: {
-//					//	iconUrl: 'https://d30y9cdsu7xlg0.cloudfront.net/png/641883-200.png',
-//						//shadowURL: '',
-//						iconSize: [30, 30], // size of the icon
-//						iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
-//						popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
-//						className: 'dot'
-//					}	
+					image: 'img/loc-img/thranduil.jpg',
+					url: 'http://lotr.wikia.com/wiki/Thranduil',
+					icon: {
+						iconUrl: 'leaflet/images/GondorIconRed.png',
+						iconSize: [25, 41], // size of the icon
+						iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
+						popupAnchor: [0, -41], // point from which the popup should open relative to the iconAnchor
+						shadowURL: 'leaflet/images/marker-shadow.png',
+						shadowSize:   [55, 41], // size of shadow
+						shadowAnchor: [12.5, 41], // point of icon from which shadow casts
+						className: 'dot'
+					}	
 				}
-
-				
 			},
-{
+			{
 					type: 'Feature',
 					geometry: {
 					type: 'Point',
@@ -311,21 +333,21 @@ url: 'http://lotr.wikia.com/wiki/Thranduil',
 				properties: {
 					title: 'Barrel Ride',
 					description: 'Tired of Thranduil&#39;s enforced hospitality, Bilbo and the dwarves use the Ring to escape Thranduil&#39;s Hall in barrels on the river',				
-image: 'img/loc-img/barrel-ride.jpg',
-url: 'http://lotr.wikia.com/wiki/Barrels_Out_Of_Bond',
-//					icon: {
-//					//	iconUrl: 'https://d30y9cdsu7xlg0.cloudfront.net/png/641883-200.png',
-//						//shadowURL: '',
-//						iconSize: [30, 30], // size of the icon
-//						iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
-//						popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
-//						className: 'dot'
-//					}	
+					image: 'img/loc-img/barrel-ride.jpg',
+					url: 'http://lotr.wikia.com/wiki/Barrels_Out_Of_Bond',
+					icon: {
+						iconUrl: 'leaflet/images/GondorIconRed.png',
+						iconSize: [25, 41], // size of the icon
+						iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
+						popupAnchor: [0, -41], // point from which the popup should open relative to the iconAnchor
+						shadowURL: 'leaflet/images/marker-shadow.png',
+						shadowSize:   [55, 41], // size of shadow
+						shadowAnchor: [12.5, 41], // point of icon from which shadow casts
+						className: 'dot'
+					}	
 				}
-
-				
 			},
-{
+			{
 					type: 'Feature',
 					geometry: {
 					type: 'Point',
@@ -334,19 +356,19 @@ url: 'http://lotr.wikia.com/wiki/Barrels_Out_Of_Bond',
 				properties: {
 					title: 'Lake-town',
 					description: 'Also called Esgaroth. Seems like a great place, but gets destroyed by a dragon',				
-image: 'img/loc-img/lake-town',
-url: 'http://lotr.wikia.com/wiki/Lake-town',
-//					icon: {
-//					//	iconUrl: 'https://d30y9cdsu7xlg0.cloudfront.net/png/641883-200.png',
-//						//shadowURL: '',
-//						iconSize: [30, 30], // size of the icon
-//						iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
-//						popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
-//						className: 'dot'
-//					}	
+					image: 'img/loc-img/lake-town',
+					url: 'http://lotr.wikia.com/wiki/Lake-town',
+					icon: {
+						iconUrl: 'leaflet/images/GondorIconRed.png',
+						iconSize: [25, 41], // size of the icon
+						iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
+						popupAnchor: [0, -41], // point from which the popup should open relative to the iconAnchor
+						shadowURL: 'leaflet/images/marker-shadow.png',
+						shadowSize:   [55, 41], // size of shadow
+						shadowAnchor: [12.5, 41], // point of icon from which shadow casts
+						className: 'dot'
+					}	
 				}
-
-				
 			},
 			{
 					type: 'Feature',
@@ -359,20 +381,17 @@ url: 'http://lotr.wikia.com/wiki/Lake-town',
 					description: 'Once thriving Kingdom Under the Mountain of the Dwarves, desolated by the wyrm Smaug. It has now been reclaimed by Thorin I and thrives once again, resumming their alliances with man and elves.',
 					url:'https://en.wikipedia.org/wiki/Lonely_Mountain',
 					image: 'img/loc-img/The_lonely_mountain.jpg',
-//					icon: {
-//					//	iconUrl: 'https://d30y9cdsu7xlg0.cloudfront.net/png/641883-200.png',
-//						//shadowURL: '',
-//						iconSize: [30, 30], // size of the icon
-//						iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
-//						popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
-//						className: 'dot'
-//					}	
-				}
-				
-				
-				
-				
-				
+					icon: {
+						iconUrl: 'leaflet/images/GondorIconRed.png',
+						iconSize: [25, 41], // size of the icon
+						iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
+						popupAnchor: [0, -41], // point from which the popup should open relative to the iconAnchor
+						shadowURL: 'leaflet/images/marker-shadow.png',
+						shadowSize:   [55, 41], // size of shadow
+						shadowAnchor: [12.5, 41], // point of icon from which shadow casts
+						className: 'dot'
+					}	
+				}				
 			},
 	
 	
@@ -388,20 +407,17 @@ url: 'http://lotr.wikia.com/wiki/Lake-town',
 					description: 'Home of the shapechanger Beorn where Bilbo and company escape from the goblins and wargs. From here, they enter Mirkwood and on Bilbo&#39;s return, he and Gandolf winter with Beorn.',
 					url:'http://tolkiengateway.net/wiki/Beorn%27s_Hall',
 					image: 'img/loc-img/Beorns-Hall.jpg',
-//					icon: {
-//					//	iconUrl: 'https://d30y9cdsu7xlg0.cloudfront.net/png/641883-200.png',
-//						//shadowURL: '',
-//						iconSize: [30, 30], // size of the icon
-//						iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
-//						popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
-//						className: 'dot'
-//					}	
+					icon: {
+						iconUrl: 'leaflet/images/GondorIconRed.png',
+						iconSize: [25, 41], // size of the icon
+						iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
+						popupAnchor: [0, -41], // point from which the popup should open relative to the iconAnchor
+						shadowURL: 'leaflet/images/marker-shadow.png',
+						shadowSize:   [55, 41], // size of shadow
+						shadowAnchor: [12.5, 41], // point of icon from which shadow casts
+						className: 'dot'
+					}	
 				}
-				
-				
-				
-				
-				
 			},
 
 
