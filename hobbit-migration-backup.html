@@ -62,16 +62,18 @@
 
 		<!-- Custom Map Script -->
 		<script>
-			var northwest = L.latLng(51, -85),
-				southeast = L.latLng(-51, 85),
+			var northwest = L.latLng(16, -23.4),
+				southeast = L.latLng(-16, 23.4),
 				bounds = L.latLngBounds(northwest, southeast),
+				imageUrl = 'img/me-base.jpg',		
+				imageBounds = [[-15, -22.4], [15, 22.4]],
 				memap = L.map('memap', {
 					attributionControl: false
-				}).setMaxBounds(bounds).setView([0, 0], 4);
+				}).setMaxBounds(bounds).setView([0, 0], 6);
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-				minZoom: 3,
-				maxZoom: 8,
-				id: 'geyerbri-msu.c1nubtmr',
+				minZoom: 5,
+				maxZoom: 9,
+				id: 'geyerbri-msu.1qh1chs8',
 				accessToken: 'pk.eyJ1IjoiZ2V5ZXJicmktbXN1IiwiYSI6IkxTRGhIQnMifQ.HbqL3TWxcEQLB61NEzCNYA'
 			}).addTo(memap);
 			L.control.mousePosition().addTo(memap);
@@ -80,13 +82,14 @@
 			).addAttribution(
 				'Map Tile Imagery &copy; <a alt="Iron Crown Enterprise" href="http://ironcrown.com/middle-earth-role-playing/">Iron Crown Enterprises</a> | <a alt="Creative Commons" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a> | Compiled with <a alt="Mapbox" href="https://www.mapbox.com/" target="_blank">Mapbox Style Editor</a>'
 			).addTo(memap);
-			
+//			L.imageOverlay(imageUrl, imageBounds).addTo(memap);	
+
 			//add pins
 			var point1 = new L.LatLng(6.256763, -39.201982),
 				point2 = new L.LatLng(4.194048, -3.332777),
 				point3 = new L.LatLng(-3.0994, 7.4431),
-				pointList = [point1, point2, point3],
-				firstpolyline = new L.Polyline(pointList, {
+				pointList1 = [point1, point2, point3],
+				firstpolyline = new L.Polyline(pointList1, {
 				color: 'red',
 				weight: 3,
 				opacity: 1,
