@@ -89,7 +89,7 @@
 				id: 'geyerbri-msu.1qh1chs8',
 				accessToken: 'pk.eyJ1IjoiZ2V5ZXJicmktbXN1IiwiYSI6IkxTRGhIQnMifQ.HbqL3TWxcEQLB61NEzCNYA'
 			}).addTo(memap);
-			L.control.mousePosition({lngFirst:true}).addTo(memap);
+			L.control.mousePosition({lngFirst:false}).addTo(memap);
 			L.control.attribution().setPrefix(
 				'<a alt="A JS library for interactive maps" href="http://leafletjs.com" target="_blank">Leaflet</a>'
 			).addAttribution(
@@ -112,7 +112,7 @@
 				point10 = new L.LatLng(3.94591, -4.66479),
 				point11 = new L.LatLng(3.71188, -6.49512),
 				point12 = new L.LatLng(6.90219, -12.13448),
-				point13 = new L.LatLng(6.54129, -13.15832),
+				point13 = new L.LatLng(6.52849, -13.24402),
 				pointA = new L.LatLng(6.90219, -12.27448),
 				pointB = new L.LatLng(7.38426, -9.10076),
 				pointC = new L.LatLng(7.2317, -9.01978),
@@ -637,7 +637,7 @@
 					type: 'Feature',
 					geometry: {
 						type: 'Point',
-						coordinates: [-13.15832, 6.54129]
+						coordinates: [-13.24402, 6.52849]
 					},
 					properties: {
 						title: 'Grey Havens',
@@ -685,7 +685,7 @@
 				feature = marker.feature;
 				marker.setIcon(L.icon(feature.properties.icon));
 				var content = "<div style='clear: both'></div><div style='float: left; padding: 5px; margin-right: 10px'><img style='width: 200px;' src=" + feature.properties.image + " /></div><div float: right><span class='pop'><a target='_blank' href='" + feature.properties.url + "'>" + feature.properties.title + "</a><br>" + feature.properties.description + "</p></span></div><div style='clear: both'></div>";
-				marker.bindPopup(content, {minWidth: 400, autoPanPadding: [10,10], closeButton: true});
+				marker.bindPopup(content, {minWidth: 400, autoPanPadding: [10,80], closeButton: true});
 			});
 			locations.addData(geoJSON);
 
