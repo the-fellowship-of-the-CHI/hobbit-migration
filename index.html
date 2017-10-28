@@ -22,7 +22,16 @@
 		<link href="css/grayscale.css" rel="stylesheet">
 			
 		<style>
-			#memap { height: calc(100% - 3.41667rem); };
+			#memap { 
+				height: calc(100% - 3.41667rem); 
+			}
+			#key {
+				position: absolute;
+				bottom: 11px;
+				left: 11px;
+				z-index: 1000;
+				width: 22%;
+			}
 		</style>
 	</head>
 
@@ -41,7 +50,10 @@
 				</div><!--/.nav-collapse -->
 			</div>
 		</div>
-
+		
+		<!-- Map Key -->
+		<img id="key" src="img/key.png" />
+		
 		<!-- Map Section -->
 		<div id="memap"></div>
 
@@ -66,10 +78,10 @@
 				southeast = L.latLng(-16, 23.4),
 				bounds = L.latLngBounds(northwest, southeast),
 				keyUrl = 'img/key.png',		
-				keyLocation = [[2.36261, -18.979], [3.92572, -13.28022]],
+				keyLocation = [[1.56261, -17.979], [4.12572, -13.28022]],
 				memap = L.map('memap', {
 					attributionControl: false
-				}).setMaxBounds(bounds).setView([5.42036, -11.63452], 7);
+				}).setMaxBounds(bounds).setView([6.69856, -8.10791], 7);
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 				minZoom: 5,
 				maxZoom: 9,
@@ -82,7 +94,7 @@
 			).addAttribution(
 				'Map Tile Imagery &copy; <a alt="Iron Crown Enterprise" href="http://ironcrown.com/middle-earth-role-playing/">Iron Crown Enterprises</a> | <a alt="Creative Commons" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a> | Compiled with <a alt="Mapbox" href="https://www.mapbox.com/" target="_blank">Mapbox Style Editor</a>'
 			).addTo(memap);
-			L.imageOverlay(keyUrl, keyLocation).addTo(memap);	
+//			L.imageOverlay(keyUrl, keyLocation).addTo(memap);	
 			var locations = L.geoJSON(geoJSON).addTo(memap);
 			
 			//add line points
@@ -661,7 +673,7 @@
 							popupAnchor: [0, -41], // point from which the popup should open relative to the iconAnchor
 							shadowURL: 'leaflet/images/marker-shadow.png',
 							shadowSize:   [55, 41], // size of shadow
-							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
+							shadowAnchor: [16, 41], // point of icon from which shadow casts
 							className: 'dot'
 						}	
 					}
@@ -674,6 +686,7 @@
 				var content = "<div style='clear: both'></div><div style='float: left; padding: 5px; margin-right: 10px'><img style='width: 200px;' src=" + feature.properties.image + " /></div><div float: right><a href='" + feature.properties.url + "'><span id='pop'>" + feature.properties.title + "</strong></a><br>" + feature.properties.description + "</p></div><div style='clear: both'></div>";
 				marker.bindPopup(content, {minWidth: 400, autoPanPadding: [5,55], closeButton: true});
 			});
+			marker._shadow.style.zIndex = 999;
 			locations.addData(geoJSON);
 
 			
