@@ -17,13 +17,13 @@
 		<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="leaflet/leaflet.css"/>
 		<link rel="stylesheet" href="leaflet/L.control.mousePosition.css" />
-		 
+
 		<!-- Custom styles for this template -->
 		<link href="css/grayscale.css" rel="stylesheet">
-			
+
 		<style>
-			#memap { 
-				height: calc(100% - 3.43056rem); 
+			#memap {
+				height: calc(100% - 3.43056rem);
 			}
 			#key {
 				position: absolute;
@@ -41,7 +41,7 @@
 			.btn-default {
 				color: #488C9F;
 				border: 1px solid #488C9F;
-				background-color: transparent; 
+				background-color: transparent;
 			}
 			.btn-default:focus, .btn-default:hover {
 				color: black;
@@ -87,7 +87,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- MODAL -->
 		<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -111,7 +111,7 @@
 
 		<!-- Map Key -->
 		<img id="key" src="img/key.png" />
-		
+
 		<!-- Map Section -->
 		<div id="memap"></div>
 
@@ -122,19 +122,19 @@
 
 		<!-- Plugin JavaScript -->
 		<script src="vendor/jquery-easing/jquery.easing.js"></script>
-	   
+
 		<!-- Custom scripts for this template -->
 		<script src="js/grayscale.js"></script>
 
 		<!-- Leaflet and Plugins Scripts -->
 		<script src="leaflet/leaflet.js"></script>
 		<script src="leaflet/L.control.mousePosition.js"></script>
-		
-		<!-- Initiates Modal and Uses cookies for Dont Show Again Checkbox -->     
+
+		<!-- Initiates Modal and Uses cookies for Dont Show Again Checkbox -->
 		<script type="text/javascript">
 			$(document).ready(function () {
 				$('#myModal').modal();
-  
+
 				//check cookies
 				function setCookie(){
 					var dis = document.cookie;
@@ -144,26 +144,26 @@
 					}
 					console.log(dis.substring(8,13));
 				}
-				setCookie();    
-				
+				setCookie();
+
 				var $check = $("input.dont").click(function(){
 					if($("input.dont").is(":checked")){
-						document.cookie = "display=false";        
+						document.cookie = "display=false";
 					}else{
-						document.cookie = "display=true";        
+						document.cookie = "display=true";
 					}
-          
+
 				});
 			});
 		</script>
-      
-		<!-- Centers Modal Vertically -->      
+
+		<!-- Centers Modal Vertically -->
 		<script type="text/javascript">
 			function centerModal() {
 				$(this).css('display', 'block');
 				var $dialog = $(this).find(".modal-dialog");
 				var offset = ($(window).height() - $dialog.height()) / 2;
-				
+
 				// Center modal vertically in window
 				$dialog.css("margin-top", offset);
 			}
@@ -178,15 +178,15 @@
 			var northwest = L.latLng(15.25, -22.65),
 				southeast = L.latLng(-15.25, 22.65),
 				bounds = L.latLngBounds(northwest, southeast),
-//				keyUrl = 'img/key.png',		
+//				keyUrl = 'img/key.png',
 //				keyLocation = [[1.56261, -17.979], [4.12572, -13.28022]],
 				memap = L.map('memap', {
 					attributionControl: false
 				}).setMaxBounds(bounds).setView([6.19856, -8.50791], 7);
-			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+			L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 				minZoom: 5,
 				maxZoom: 9,
-				id: 'geyerbri-msu.1qh1chs8',
+				id: 'mapbox://styles/geyerbri-msu/cj8q60y8u5e9a2rmiszxyf5il',
 				accessToken: 'pk.eyJ1IjoiZ2V5ZXJicmktbXN1IiwiYSI6IkxTRGhIQnMifQ.HbqL3TWxcEQLB61NEzCNYA'
 			}).addTo(memap);
 			L.control.mousePosition({lngFirst:false}).addTo(memap);
@@ -195,11 +195,11 @@
 			).addAttribution(
 				'Map Tile Imagery &copy; <a alt="Iron Crown Enterprise" href="http://ironcrown.com/middle-earth-role-playing/">Iron Crown Enterprises</a> | <a alt="Creative Commons" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a> | Compiled with <a alt="Mapbox" href="https://www.mapbox.com/" target="_blank">Mapbox Style Editor</a>'
 			).addTo(memap);
-//			L.imageOverlay(keyUrl, keyLocation).addTo(memap);	
+//			L.imageOverlay(keyUrl, keyLocation).addTo(memap);
 			var locations = L.geoJSON(geoJSON).addTo(memap);
-			
+
 			//add line points
-			
+
 			var	pointA = new L.LatLng(6.90219, -12.27448),
 				pointB = new L.LatLng(7.20203, -10.12249),
 				pointC = new L.LatLng(7.1775, -9.46472),
@@ -225,11 +225,11 @@
 				point12 = new L.LatLng(6.90219, -12.13448),
 				point13 = new L.LatLng(6.52849, -13.24402);
 
-			//add PointLine arrays	
+			//add PointLine arrays
 			var	numericalPointList = [point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, point11, point12, point13],
 				alphaPointList = [pointA, pointB, pointC, pointD, pointE, pointF, pointG, pointH, pointI, pointJ, pointK];
-				
-			//create PolyLines	
+
+			//create PolyLines
 			var	alphaPolyline = new L.Polyline(alphaPointList, {
 					color: '#ff2727',
 					weight: 3,
@@ -242,12 +242,12 @@
 					opacity: 1,
 					smoothFactor: 1
 				});
-				
-			//add PolyLines	
+
+			//add PolyLines
 			alphaPolyline.addTo(memap);
 			numericalPolyline.addTo(memap);
-			
-			
+
+
 			//add pins
 			var geoJSON = [
 				{
@@ -259,7 +259,7 @@
 					properties: {
 						title: 'Troll Encounter',
 						description: 'When Bilbo&#39;s companions are captured by hungry trolls, Bilbo distracts the trolls until daylight breaks and the trolls are turned into stone',
-						url: 'http://lotr.wikia.com/wiki/Stone-trolls',					
+						url: 'http://lotr.wikia.com/wiki/Stone-trolls',
 						image: 'img/loc-img/the-trolls.jpg',
 						icon: {
 							iconUrl: 'leaflet/images/GondorIconRed.png',
@@ -270,7 +270,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
@@ -282,7 +282,7 @@
 					properties: {
 						title: 'Thorin&#39;s Company at Rivendell',
 						description: 'Bilbo, Gandalf, and Thorin&#39;s company of dwarves are hosted by Elrond at Rivendell',
-						url: 'http://lotr.wikia.com/wiki/Rivendell',					
+						url: 'http://lotr.wikia.com/wiki/Rivendell',
 						image: 'img/loc-img/rivendell.jpg',
 						icon: {
 							iconUrl: 'leaflet/images/GondorIconRed.png',
@@ -293,7 +293,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
@@ -305,7 +305,7 @@
 					properties: {
 						title: 'The Fellowship of the Ring at Rivendell',
 						description: 'After escaping the Nazgul, Frodo and the Fellowship visit Rivendell, where they also run into the happily retired Bilbo',
-						url: 'http://lotr.wikia.com/wiki/Rivendell',					
+						url: 'http://lotr.wikia.com/wiki/Rivendell',
 						image: 'img/loc-img/rivendell.jpg',
 						icon: {
 							iconUrl: 'leaflet/images/GondorIconBlue.png',
@@ -316,7 +316,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
@@ -327,7 +327,7 @@
 					},
 					properties: {
 						title: 'Misty Mountains',
-						description: 'Gandalf, Bilbo, and the dwarves cross the mountains by the High Pass. Bilbo gets lost, meets Gollum, and accidentally discovers the Ring',					
+						description: 'Gandalf, Bilbo, and the dwarves cross the mountains by the High Pass. Bilbo gets lost, meets Gollum, and accidentally discovers the Ring',
 						image: 'img/loc-img/misty-mountains.jpg',
 						url: 'http://lotr.wikia.com/wiki/Misty_Mountains',
 						icon: {
@@ -339,7 +339,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
@@ -350,7 +350,7 @@
 					},
 					properties: {
 						title: 'Mines of Moria',
-						description: 'When the Fellowship encounters the Misty Mountains, they decide to cross underground through the Mines of Moria, which they think are deserted...',					
+						description: 'When the Fellowship encounters the Misty Mountains, they decide to cross underground through the Mines of Moria, which they think are deserted...',
 						image: 'img/loc-img/mines-moria.jpg',
 						url: 'http://lotr.wikia.com/wiki/Moria',
 						icon: {
@@ -362,7 +362,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
@@ -373,7 +373,7 @@
 					},
 					properties: {
 						title: 'Mirkwood',
-						description: 'Bilbo and the dwarves try to travel through the forest undetected, but are captured by elves',					
+						description: 'Bilbo and the dwarves try to travel through the forest undetected, but are captured by elves',
 						image: 'img/loc-img/mirkwood.jpg',
 						url: 'http://lotr.wikia.com/wiki/Mirkwood',
 						icon: {
@@ -384,8 +384,8 @@
 							shadowURL: 'leaflet/images/marker-shadow.png',
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
-							className: 'dot'	
-						}		
+							className: 'dot'
+						}
 					}
 				},
 				{
@@ -396,7 +396,7 @@
 					},
 					properties: {
 						title: 'Thranduil&#39;s Hall',
-						description: 'Thorin and the dwarves enjoy the elven king Thranduil&#39;s hospitality, but from behind bars',					
+						description: 'Thorin and the dwarves enjoy the elven king Thranduil&#39;s hospitality, but from behind bars',
 						image: 'img/loc-img/thranduil.jpg',
 						url: 'http://lotr.wikia.com/wiki/Thranduil',
 						icon: {
@@ -408,7 +408,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
@@ -419,7 +419,7 @@
 					},
 					properties: {
 						title: 'Barrel Ride',
-						description: 'Tired of Thranduil&#39;s enforced hospitality, Bilbo and the dwarves use the Ring to escape Thranduil&#39;s Hall in barrels on the river',				
+						description: 'Tired of Thranduil&#39;s enforced hospitality, Bilbo and the dwarves use the Ring to escape Thranduil&#39;s Hall in barrels on the river',
 						image: 'img/loc-img/barrel-ride.jpg',
 						url: 'http://lotr.wikia.com/wiki/Barrels_Out_Of_Bond',
 						icon: {
@@ -431,7 +431,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
@@ -442,7 +442,7 @@
 					},
 					properties: {
 						title: 'Lake-town',
-						description: 'Also called Esgaroth. Seems like a great place, but gets destroyed by a dragon',				
+						description: 'Also called Esgaroth. Seems like a great place, but gets destroyed by a dragon',
 						image: 'img/loc-img/lake-town.jpg',
 						url: 'http://lotr.wikia.com/wiki/Lake-town',
 						icon: {
@@ -454,7 +454,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
@@ -477,8 +477,8 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
-					}				
+						}
+					}
 				},
 				{
 					type: 'Feature',
@@ -500,7 +500,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
@@ -523,7 +523,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
@@ -546,9 +546,9 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
-				},	
+				},
 				{
 					type: 'Feature',
 					geometry: {
@@ -569,7 +569,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
@@ -592,7 +592,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
@@ -615,7 +615,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
@@ -638,7 +638,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
@@ -661,7 +661,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
@@ -684,19 +684,19 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
 					type: 'Feature',
 					geometry: {
 						type: 'Point',
-						coordinates: [-12.20448, 6.90219] 
+						coordinates: [-12.20448, 6.90219]
 					},
 					properties: {
 						title: 'Hobbiton, the Shire',
 						description: 'Frodo Baggins and Samwise Gamgee depart from Hobbiton to begin their journey with the Ring',
-						url: 'http://lotr.wikia.com/wiki/Hobbiton',	
+						url: 'http://lotr.wikia.com/wiki/Hobbiton',
 						image: 'img/loc-img/bag-end.png',
 						icon: {
 							iconUrl: 'leaflet/images/StartIconBlue.png',
@@ -707,8 +707,8 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
-					}	
+						}
+					}
 				},
 				{
 					type: 'Feature',
@@ -719,7 +719,7 @@
 					properties: {
 						title: 'Bag End',
 						description: 'Bilbo Baggins&#39; hobbit hole is comfortable and tidy, until Gandalf invites a group of dwarves for dinner',
-						url: 'http://lotr.wikia.com/wiki/Bag_End',					
+						url: 'http://lotr.wikia.com/wiki/Bag_End',
 						image: 'img/loc-img/bag-end.png',
 						icon: {
 							iconUrl: 'leaflet/images/StartIconRed.png',
@@ -730,8 +730,8 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
-					}					
+						}
+					}
 				},
 				{
 					type: 'Feature',
@@ -753,7 +753,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [12.5, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				},
 				{
@@ -765,7 +765,7 @@
 					properties: {
 						title: 'Frozen Trolls',
 						description: 'Frodo and friends found the trolls frozen in stone through their encounter with Bilbo decades before.',
-						url: 'http://lotr.wikia.com/wiki/Stone-trolls',					
+						url: 'http://lotr.wikia.com/wiki/Stone-trolls',
 						image: 'img/loc-img/the-trolls.jpg',
 						icon: {
 							iconUrl: 'leaflet/images/GondorIconBlue.png',
@@ -776,7 +776,7 @@
 							shadowSize:   [55, 41], // size of shadow
 							shadowAnchor: [16, 41], // point of icon from which shadow casts
 							className: 'dot'
-						}	
+						}
 					}
 				}
 			];
@@ -789,7 +789,7 @@
 			});
 			locations.addData(geoJSON);
 
-			
+
 		</script>
 
 	</body>
